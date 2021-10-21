@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<form>
+	<label>Username:</label>
+	<input type="text" name="username"><br>
+	<label>Email:</label>
+	<input type="text" name="email"><br>
+	<label>Phone Number:</label>
+	<input type="text" name="phone"><br>
+	<label>Password:</label>
+	<input type="password" name="password"><br>
+	<label>Confirm Password:</label>
+	<input type="password" name="confirm_password"><br>
+	<label>Gender</label><br>
+	<input type="radio" name='gender'>Male</input>
+	<input type="radio" name='gender'>Female</input><br>
+	<label>Birthday</label>
+	<select name="month">
+		<option></option>
+		<option>January</option>
+		<option>February</option>
+		<option>March</option>
+		<option>April</option>
+		<option>May</option>
+		<option>June</option>
+		<option>July</option>
+		<option>August</option>
+		<option>September</option>
+		<option>October</option>
+		<option>November</option>
+		<option>December</option>
+	</select>
+	<select name="day">
+		<option></option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+		<option>6</option>
+		<option>7</option>
+		<option>8</option>
+		<option>9</option>
+		<option>10</option>
+		<option>11</option>
+		<option>12</option>
+		<option>13</option>
+		<option>14</option>
+		<option>15</option>
+		<option>16</option>
+		<option>17</option>
+		<option>18</option>
+		<option>19</option>
+		<option>20</option>
+		<option>21</option>
+		<option>22</option>
+		<option>23</option>
+		<option>24</option>
+		<option>25</option>
+		<option>26</option>
+		<option>27</option>
+		<option>28</option>
+		<option>29</option>
+		<option>30</option>
+		<option>31</option>
+	</select>
+	<select name="year">
+		<option></option>
+		<option>1970</option>
+		<option>1971</option>
+		<option>1972</option>
+		<option>1973</option>
+		<option>1974</option>
+		<option>1975</option>
+		<option>1976</option>
+		<option>1977</option>
+		<option>1978</option>
+		<option>1979</option>
+		<option>1980</option>
+		<option>1981</option>
+		<option>1982</option>
+		<option>1983</option>
+		<option>1984</option>
+		<option>1985</option>
+		<option>1986</option>
+		<option>1987</option>
+		<option>1988</option>
+		<option>1989</option>
+		<option>1990</option>
+		<option>1991</option>
+		<option>1992</option>
+		<option>1993</option>
+		<option>1994</option>
+		<option>1995</option>
+		<option>1996</option>
+		<option>1997</option>
+		<option>1998</option>
+		<option>1999</option>
+		<option>2000</option>
+		<option>2001</option>
+		<option>2002</option>
+		<option>2003</option>
+		<option>2004</option>
+		<option>2005</option>
+		<option>2006</option>
+		<option>2007</option>
+		<option>2008</option>
+		<option>2009</option>
+		<option>2010</option>
+	</select>
+	<br>
+	<label>Favorite Music Genre</label><br>
+	<input type="checkbox" name="genre">Pop</input>
+	<input type="checkbox" name="genre">HipHop</input>
+	<input type="checkbox" name="genre">Jazz</input>
+	<input type="checkbox" name="genre">Rock</input>
+	<input type="checkbox" name="genre">Classical</input>
+	<input type="checkbox" name="genre">Country</input>
+	<br>
+	
+	<input onclick="document.getElementById('warns').innerHTML = '';" type="reset">
+</form>
+<button type="button" onclick="submit();">Submit</button>
+<div id="warns"></div>
+
+<script>
+	function submit(){
+		let fields = ['username', 'email', 'phone', 'password', 'gender', 'year', 'month', 'day', 'genre'];
+		let radios = ['gender', 'genre'];
+		let regex = ['^[a-zA-Z1-9]{4,12}', '.*@.*(.com|.net|.org|.edu)', '([1-9]{3}-){2}[1-9]{4}', '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$'];
+		let emptyFields = [];
+		let invalidFields = [];
+		//Find empty
+		for (var i = fields.length - 1; i >= 0; i--) {
+			if(radios.includes(fields[i])){
+				let inputs = document.querySelectorAll('[name="' + fields[i] + '"]');
+				let checked = false;
+				for (var x = inputs.length - 1; x >= 0; x--) {
+					if(inputs[x].checked){
+						checked = true;
+					}
+				}
+				if(!checked){
+					emptyFields.push(fields[i]);
+				}
+			}
+			if(document.querySelector('[name="' + fields[i] + '"]').value === ''){
+				emptyFields.push(fields[i]);
+			}
+		}
+		//Check for validation
+		for (var i = regex.length - 1; i >= 0; i--) {
+			if(!emptyFields.includes(fields[i]) && !document.querySelector('[name="' + fields[i] + '"]').value.match(new RegExp(regex[i]))){
+				invalidFields.push(fields[i]);
+			}
+		}
+
+		let errorString = '';
+		for (var i = emptyFields.length - 1; i >= 0; i--) {
+			errorString += '<p>Please Enter <span style="color:red">' + emptyFields[i] + '</span></p>';
+		}
+		for (var i = invalidFields.length - 1; i >= 0; i--) {
+			errorString += '<p>Please Enter <span style="color:orange">a valid ' + invalidFields[i] + '</span></p>';
+		}
+
+		if(errorString == ''){
+			if(document.querySelector('[name="password"]').value == document.querySelector('[name="confirm_password"]').value){
+				location.href = 'https://blazerunner44.github.io/Basic-HTML/';
+			}else{
+				alert('Passwords do not match');
+			}
+		}else{
+			document.getElementById("warns").innerHTML = errorString;
+		}
+		
+	}
+</script>
+</body>
+</html>

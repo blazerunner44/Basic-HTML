@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+<body>
+
+<script>
+d3.select("body")
+	.append("span")
+	.on("mousemove", function(e){
+		d3.select("#mouse").text("Mouse X: " + d3.pointer(e)[0] + ", Y: " + d3.pointer(e)[1]);
+	});
+d3.select("span")
+	.append("img")
+	.attr("src", "logos/facebook.png")
+	.attr("width", 100)
+	.attr("height", 100)
+	.on("mouseenter", function(){
+		d3.select("#in").text("In: Facebook");
+		d3.select(this).style("opacity", 0.5);
+	})
+	.on("mouseleave", function(){
+		d3.select("#out").text("Out: Facebook");
+		d3.select(this).style("opacity", 1.0);
+	})
+	.on("dblclick", function(){
+		window.open('https://facebook.com', '_blank');
+	})
+	.on("mousedown", function(){
+		d3.select(this).attr("width", parseInt(d3.select(this).attr("width")) + 5);
+	})
+	.on("mouseup", function(){
+		d3.select(this).attr("height", parseInt(d3.select(this).attr("height")) + 5);
+	});
+
+d3.select("span")
+	.append("img")
+	.attr("src", "logos/instagram.png")
+	.attr("width", 100)
+	.attr("height", 100)
+	.on("mouseenter", function(){
+		d3.select("#in").text("In: Instagram");
+		d3.select(this).style("opacity", 0.5);
+	})
+	.on("mouseleave", function(){
+		d3.select("#out").text("Out: Instagram");
+		d3.select(this).style("opacity", 1.0);
+	})
+	.on("dblclick", function(){
+		window.open('https://instagram.com', '_blank');
+	})
+	.on("mousedown", function(){
+		d3.select(this).attr("width", parseInt(d3.select(this).attr("width")) + 5);
+	})
+	.on("mouseup", function(){
+		d3.select(this).attr("height", parseInt(d3.select(this).attr("height")) + 5);
+	});
+
+d3.select("span")
+	.append("img")
+	.attr("src", "logos/linkedin.png")
+	.attr("width", 100)
+	.attr("height", 100)
+	.on("mouseenter", function(){
+		d3.select("#in").text("In: LinkedIn");
+		d3.select(this).style("opacity", 0.5);
+	})
+	.on("mouseleave", function(){
+		d3.select("#out").text("Out: LinkedIn");
+		d3.select(this).style("opacity", 1.0);
+	})
+	.on("dblclick", function(){
+		window.open('https://linkedin.com', '_blank');
+	})
+	.on("mousedown", function(){
+		d3.select(this).attr("width", parseInt(d3.select(this).attr("width")) + 5);
+	})
+	.on("mouseup", function(){
+		d3.select(this).attr("height", parseInt(d3.select(this).attr("height")) + 5);
+	});
+
+d3.select("span")
+	.append("img")
+	.attr("src", "logos/twitter.png")
+	.attr("width", 100)
+	.attr("height", 100)
+	.on("mouseenter", function(){
+		d3.select("#in").text("In: twitter");
+		d3.select(this).style("opacity", 0.5);
+	})
+	.on("mouseleave", function(){
+		d3.select("#out").text("Out: twitter");
+		d3.select(this).style("opacity", 1.0);
+	})
+	.on("dblclick", function(){
+		window.open('https://twitter.com', '_blank');
+	})
+	.on("mousedown", function(){
+		d3.select(this).attr("width", parseInt(d3.select(this).attr("width")) + 5);
+	})
+	.on("mouseup", function(){
+		d3.select(this).attr("height", parseInt(d3.select(this).attr("height")) + 5);
+	});
+
+d3.select("span")
+	.append("img")
+	.attr("src", "logos/reddit.png")
+	.attr("width", 100)
+	.attr("height", 100)
+	.on("mouseenter", function(){
+		d3.select("#in").text("In: reddit");
+		d3.select(this).style("opacity", 0.5);
+	})
+	.on("mouseleave", function(){
+		d3.select("#out").text("Out: reddit");
+		d3.select(this).style("opacity", 1.0);
+	})
+	.on("dblclick", function(){
+		window.open('https://reddit.com', '_blank');
+	})
+	.on("mousedown", function(){
+		d3.select(this).attr("width", parseInt(d3.select(this).attr("width")) + 5);
+	})
+	.on("mouseup", function(){
+		d3.select(this).attr("height", parseInt(d3.select(this).attr("height")) + 5);
+	});
+
+d3.select("body")
+	.append("div")
+	.attr("id", "in")
+	.text("In: ");
+d3.select("body")
+	.append("div")
+	.attr("id", "out")
+	.text("Out: ");
+d3.select("body")
+	.append("div")
+	.attr("id", "mouse")
+	.text("Mouse X: , Y: ");
+
+
+</script>
+</body>
+</html>
